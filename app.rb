@@ -239,6 +239,7 @@ class App < Sinatra::Base
 
   def temporize_client
     raise 'Refresh webhooks are not enabled' unless settings.refresh_webhook?
+
     @temporize_client ||= Temporize::Scheduler.new(settings)
   end
 
