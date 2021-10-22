@@ -4,7 +4,7 @@
 module InstagramTokenAgent
   class Client
     include HTTParty
-    attr_accessor :config
+    attr_reader :config
 
     def initialize(settings)
       @config = settings
