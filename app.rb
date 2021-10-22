@@ -202,6 +202,8 @@ class App < Sinatra::Base
 
     # Find the date of the next refresh job
     def next_refresh_date
+      return unless settings.refresh_webhook?unless settings.refresh_webhook?
+
       if next_job = temporize_client.next_job
         DateTime.parse(next_job['next']).strftime('%b %-d %Y, %-l:%M%P %Z')
       else
@@ -232,6 +234,7 @@ class App < Sinatra::Base
 
   # Check that a job has been scheduled
   def check_refresh_job
+    return unless settings.refresh_webhook?
     return unless temporize_client.jobs.empty?
 
     temporize_client.update!

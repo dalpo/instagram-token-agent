@@ -26,7 +26,6 @@ module InstagramTokenAgent
       )
 
       if response.success?
-
         Store.update(response['access_token'], Time.now + response['expires_in'], true, nil)
 
         # If we're working with single-use webhooks, schedule a job for the period [token_expiry_buffer] before expiry.
@@ -37,7 +36,6 @@ module InstagramTokenAgent
 
         true
       else
-
         Store.update(ENV['STARTING_TOKEN'], Time.now, false, response.body)
 
         false
